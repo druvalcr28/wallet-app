@@ -66,3 +66,18 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Notes
+
+install redux : npm install redux@3.7.2
+install unique id generator : npm install uuid@3.1.0
+install react and redux connector : npm install react-redux@5.1.2
+install for using routing (multiple pages) : npm install react-router-dom@4.3.1
+
+for date picking : npm install moment@2.24.0 react-dates@21.8.0  react-addons-shallow-compare@15.6.2
+
+IMP:
+store.dispatch({});
+store.subscribe({});
+
+IMP*:
