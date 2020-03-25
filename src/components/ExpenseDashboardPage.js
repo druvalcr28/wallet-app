@@ -14,7 +14,6 @@ import moment from 'moment';
 class ExpenseListItem extends React.Component{
     render(){
     const id = this.props.details.id;
-    console.log(id);
     return (
     <div>
         <Link to={ `/edit/${id}` }>
