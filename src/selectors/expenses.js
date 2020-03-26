@@ -10,6 +10,7 @@ export default (expenses,{text,sortBy,startDate,endDate}) => {
         else if(expense.description && text) textInclude = expense.description.toLowerCase().includes(text.toLowerCase());
         return datelower && dateupper && textInclude;
     }
+    if(!expenses) return [];
     var result = expenses.filter(isAccepted);
         
     result.sort(function (a, b) {

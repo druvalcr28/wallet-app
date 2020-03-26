@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import reorderExpenses from '../selectors/expenses';
+import getTotAmount from '../selectors/getTotAmount';
 import { setTextFilter,sortByDate,sortByAmount,setStartDate,setEndDate } from '../actions/filters';
 import { removeExpense } from '../actions/expenses';
 import { Link } from 'react-router-dom';
@@ -99,10 +100,29 @@ const mapStatetoProps_EL = (state) => {
 }
 const ConnectedExpenseList = connect(mapStatetoProps_EL)(ExpenseList);
 
+// Expense Summary
+const ExpenseSummary = (props) => {
+    return(
+        <div>
+            <h3>Total Expense(s) : {props.totExpense}</h3>
+            <h3>Total Amount : {props.totAmount}</h3>
+        </div>
+    );
+};
+const mapStatetoProps_ES = (state) => {
+    var visibleExpenses = reorderExpenses(state.expenses,state.filters);
+    return {
+        totExpense: visibleExpenses ? visibleExpenses.length : 0,
+        totAmount: getTotAmount(visibleExpenses)
+    };
+}
+const ConnectedExpenseSummary = connect(mapStatetoProps_ES)(ExpenseSummary);
+
 // Main DashBoard
 export const ExpenseDashboardPage = () => (
     <div>
         Expense DashBoard
+        <ConnectedExpenseSummary />
         <ConnectedExpenseListFilter />
         <ConnectedExpenseList />
     </div>
