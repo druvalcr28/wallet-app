@@ -81,6 +81,8 @@ for date picking : npm install moment@2.24.0 react-dates@21.8.0  react-addons-sh
 
 install firebase : npm install firebase@7.12.0
 
+install redex thunk : npm install redux-thunk@2.3.0
+
 IMP:
 - store.dispatch({});
 - store.subscribe({});

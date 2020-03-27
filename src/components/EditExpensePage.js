@@ -1,16 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ExpenseForm } from './ExpenseForm';
-import { editExpense } from '../actions/expenses';
+import { startEditExpense } from '../actions/expenses';
 // props.match.params.id : gets information from the url
 const EditExpensePage = (props) => {
-    console.log(props.expense);
     return (
         <div>
             <ExpenseForm
             expense={props.expense}
             handleSubmit={(expense) => {
-                props.dispatch(editExpense({id:props.expense.id,updates:expense}));
+                props.dispatch(startEditExpense({id:props.expense.id,updates:expense}));
                 props.history.push('/');
             }}/>
         </div>

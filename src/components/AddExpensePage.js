@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ExpenseForm } from './ExpenseForm';
-import { addExpense } from '../actions/expenses';
+import { startAddExpense } from '../actions/expenses';
 
 const AddExpensePage = (props) => (
     <div>
         Add Expense
         <ExpenseForm handleSubmit={(expense) => {
-            props.dispatch(addExpense({
+            props.dispatch(startAddExpense({
                 description: expense.description,
                 note: expense.note,
                 amount: expense.amount,

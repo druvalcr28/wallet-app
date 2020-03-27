@@ -16,13 +16,15 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 var database = firebase.database();
 
-
+export { firebase, database };
 /*
+See firebase docs
 Example:
 
 database.ref('expenses').on('child_remove', (snap) => {});
 database.ref('expenses').on('child_changed', (snap) => {});
 database.ref('expenses').on('child_added', (snap) => {});
+database.ref().on('value', (snap) => {});
 
 database.ref().set({
   expenses: null

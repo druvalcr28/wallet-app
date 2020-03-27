@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import reorderExpenses from '../selectors/expenses';
 import getTotAmount from '../selectors/getTotAmount';
 import { setTextFilter,sortByDate,sortByAmount,setStartDate,setEndDate } from '../actions/filters';
-import { removeExpense } from '../actions/expenses';
+import { startRemoveExpense } from '../actions/expenses';
 import { Link } from 'react-router-dom';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
@@ -22,7 +22,7 @@ class ExpenseListItem extends React.Component{
         </Link>
         <p>{this.props.details.amount} - {moment(this.props.details.createdAt).format('MMMM Do YYYY')}</p>
         <button onClick={() => {
-            this.props.dispatch(removeExpense({id:this.props.details.id}));
+            this.props.dispatch(startRemoveExpense({id:this.props.details.id}));
         }}>Remove</button>
     </div>
     );
