@@ -45,6 +45,8 @@ export default (state=[],action) => {
             if(action.updates.hasOwnProperty('createdAt'))
                 result[indx].createdAt = action.updates.createdAt;
             return result;
+        case 'SET_EXPENSES':
+            return action.expenses;
         default:
             return state;
     }
