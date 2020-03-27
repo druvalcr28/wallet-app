@@ -8,6 +8,8 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'; 
 import configureStore from './store/configureStore';
 
+import './firebase/firebase';
+
 const store = configureStore();
 
 const ar = (

@@ -79,6 +79,8 @@ install for using routing (multiple pages) : npm install react-router-dom@4.3.1
 
 for date picking : npm install moment@2.24.0 react-dates@21.8.0  react-addons-shallow-compare@15.6.2
 
+install firebase : npm install firebase@7.12.0
+
 IMP:
 - store.dispatch({});
 - store.subscribe({});
@@ -88,7 +90,7 @@ IMP*:
 - react component as const : use 'props' to access props 
 
 #### Issue Solution
-- issue : Development server of create-react-app does not auto refresh 
+1. issue : Development server of create-react-app does not auto refresh 
 - solution :
 $sudo bash
 #npm  start
