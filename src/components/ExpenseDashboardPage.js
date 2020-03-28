@@ -14,6 +14,7 @@ import moment from 'moment';
 // if we use a const ExpenseListItem instead of class, we can't make use of any states, depending on the needs we can use both
 class ExpenseListItem extends React.Component{
     render(){
+    console.log('ExpenseListItem :',this.props.details);    
     const id = this.props.details.id;
     return (
     <div>
@@ -30,8 +31,9 @@ class ExpenseListItem extends React.Component{
 };
 const ConnectedExpenseListItem = connect()(ExpenseListItem);    // note that here we don't need any state, we just need to use dispatch() to the store
 
+
 // Expense Filters
-class ExpenseListFilter extends React.Component {  // here we can also use the implicit syntax of returning jsx
+class ExpenseListFilter extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -83,22 +85,31 @@ const mapStatetoProps_ELF = (state) => {
 }
 const ConnectedExpenseListFilter = connect(mapStatetoProps_ELF)(ExpenseListFilter);
 
+
 // Expense Listing
-const ExpenseList = (props) => (
+class ExpenseList extends React.Component{
+    render(){
+    var expenses = this.props.expenses;
+    console.log('ExpenseList : expenses : ',expenses);
+    return(
     <div>
        <ul>
-            {props.expenses.map(expense => {
-                return <ConnectedExpenseListItem key={expense.id} details={expense}/>;
-            })}
+            {expenses.map(expense => {
+                console.log('expense : ',expense);
+                return <ConnectedExpenseListItem key={expense.id} details={expense}/>})
+            }
        </ul>
     </div>
-);
+    );
+    };
+};
 const mapStatetoProps_EL = (state) => {
     return {
         expenses: reorderExpenses(state.expenses,state.filters)
     };
 }
 const ConnectedExpenseList = connect(mapStatetoProps_EL)(ExpenseList);
+
 
 // Expense Summary
 const ExpenseSummary = (props) => {
@@ -118,10 +129,11 @@ const mapStatetoProps_ES = (state) => {
 }
 const ConnectedExpenseSummary = connect(mapStatetoProps_ES)(ExpenseSummary);
 
+
 // Main DashBoard
 export const ExpenseDashboardPage = () => (
     <div>
-        Expense DashBoard
+        <h3>Expense DashBoard</h3>
         <ConnectedExpenseSummary />
         <ConnectedExpenseListFilter />
         <ConnectedExpenseList />

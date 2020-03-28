@@ -32,7 +32,6 @@ export default (state=[],action) => {
             // return result;
         case 'EDIT_EXPENSE':
             result = [...state];
-            console.log(action.id,action.updates);
             for(indx=0;indx<state.length;indx++){
                 if(state[indx].id === action.id) break;
             }
