@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ExpenseForm } from './ExpenseForm';
 import { startEditExpense } from '../actions/expenses';
+
 // props.match.params.id : gets information from the url
 const EditExpensePage = (props) => {
     return (
@@ -10,7 +11,7 @@ const EditExpensePage = (props) => {
             expense={props.expense}
             handleSubmit={(expense) => {
                 props.dispatch(startEditExpense({id:props.expense.id,updates:expense}));
-                //props.history.push('/');
+                props.history.push('/dashboard');
             }}/>
         </div>
     );

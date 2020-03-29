@@ -8,6 +8,8 @@ import { ConnectedEditExpensePage } from '../components/EditExpensePage';
 import { NotFoundPage } from '../components/NotFoundPage';
 import { createBrowserHistory } from 'history';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+import PrivateRouteValidID from './PrivateRouteValidID';
 
 export const history = createBrowserHistory();
  
@@ -15,10 +17,10 @@ const AppRouter = () => (
     <Router history={history}>
         <div>
             <Switch>
-                <Route path="/" component={ConnectedLoginPage} exact={true}/>
+                <PublicRoute path="/" component={ConnectedLoginPage} exact={true}/>
                 <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
                 <PrivateRoute path="/create" component={ConnectedAddExpensePage} />
-                <PrivateRoute path="/edit/:id" component={ConnectedEditExpensePage} />
+                <PrivateRouteValidID path="/edit/:id" component={ConnectedEditExpensePage} />
                 <Route component={NotFoundPage} />
             </Switch>
         </div>

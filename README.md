@@ -83,6 +83,8 @@ install firebase : npm install firebase@7.12.0
 
 install redex thunk : npm install redux-thunk@2.3.0
 
+npm intall history
+
 IMP:
 - store.dispatch({});
 - store.subscribe({});
