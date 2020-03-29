@@ -53,7 +53,7 @@ export class ExpenseForm extends React.Component {
                 return {errorMsg: ''};
             });
             console.log('Submitted');
-            this.props.onSubmit({   // here we are calling the function by passing an object with necessary info, and function definition is at the place where we are passing the props 
+            this.props.handleSubmit({   // here we are calling the function by passing an object with necessary info, and function definition is at the place where we are passing the props 
                 description: this.state.description,
                 amount: parseFloat(this.state.amount,10),
                 createdAt: this.state.createdAt.valueOf(),
