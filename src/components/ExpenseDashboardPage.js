@@ -14,7 +14,7 @@ import moment from 'moment';
 // if we use a const ExpenseListItem instead of class, we can't make use of any states, depending on the needs we can use both
 class ExpenseListItem extends React.Component{
     render(){
-    console.log('ExpenseListItem :',this.props.details);    
+    //console.log('ExpenseListItem :',this.props.details);    
     const id = this.props.details.id;
     return (
     <div>
@@ -90,12 +90,12 @@ const ConnectedExpenseListFilter = connect(mapStatetoProps_ELF)(ExpenseListFilte
 class ExpenseList extends React.Component{
     render(){
     var expenses = this.props.expenses;
-    console.log('ExpenseList : expenses : ',expenses);
+    //console.log('ExpenseList : expenses : ',expenses);
     return(
     <div>
        <ul>
             {expenses.map(expense => {
-                console.log('expense : ',expense);
+                //console.log('expense : ',expense);
                 return <ConnectedExpenseListItem key={expense.id} details={expense}/>})
             }
        </ul>
@@ -132,7 +132,6 @@ const ConnectedExpenseSummary = connect(mapStatetoProps_ES)(ExpenseSummary);
 
 // Main DashBoard
 export const ExpenseDashboardPage = (props) => {
-    console.log(props);
     return(
     <div>
         <h3>Expense DashBoard</h3>

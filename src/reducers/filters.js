@@ -18,12 +18,10 @@ export default (state={text:'',sortBy:'amount',startDate:moment().startOf('month
             resultFilter.sortBy = 'date';
             return resultFilter;
         case 'SET_START_DATE':
-            console.log(action.startDate);
             resultFilter = Object.assign({}, state);
             resultFilter.startDate = action.startDate;
             return resultFilter;
         case 'SET_END_DATE':
-            console.log(action.endDate);
             resultFilter = Object.assign({}, state);
             resultFilter.endDate = action.endDate;
             return resultFilter;

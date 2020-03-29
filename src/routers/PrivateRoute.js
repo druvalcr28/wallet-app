@@ -16,7 +16,6 @@ export const PrivateRoute = ({isAuthenticated, component:Component, ...rest}) =>
     }}/>
 );
 const mapStateToProps = (state,props) => {
-    console.log('check1:',props);
     return {
         isAuthenticated: state.auth.userID === '' ? false : true
     };
