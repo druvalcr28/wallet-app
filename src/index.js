@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import AppRouter from './routers/AppRouter';
+import AppRouter,{ history } from './routers/AppRouter';
 import * as serviceWorker from './serviceWorker';
 
 // 'Provider' provides the store to all components
 import { Provider } from 'react-redux'; 
 import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
+import { login,logout } from './actions/auth';
 
-import './firebase/firebase';
+import {firebase} from './firebase/firebase';
 
 const store = configureStore();
 
@@ -18,10 +19,34 @@ const ar = (
         <AppRouter />
     </Provider>
 );
+
+var hasRendered = false;
+const renderApp = () => {
+    if(!hasRendered){
+        ReactDOM.render(ar,document.getElementById('root'));
+        hasRendered = true;
+    }
+};
+
 ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(ar,document.getElementById('root'));
+firebase.auth().onAuthStateChanged((user) => {
+    if(user){
+        store.dispatch(login({userID:user.uid}));
+        console.log('logged in');
+        store.dispatch(startSetExpenses()).then(() => {
+            renderApp();
+            if(history.location.pathname === '/') {
+                history.push('/dashboard');
+            }
+        });
+    } 
+    else{
+        store.dispatch(logout());
+        console.log('logged out');
+        renderApp();
+        history.push('/');
+    }
 });
 
 // If you want your app to work offline and load faster, you can change

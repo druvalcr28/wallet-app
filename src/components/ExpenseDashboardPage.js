@@ -131,11 +131,14 @@ const ConnectedExpenseSummary = connect(mapStatetoProps_ES)(ExpenseSummary);
 
 
 // Main DashBoard
-export const ExpenseDashboardPage = () => (
+export const ExpenseDashboardPage = (props) => {
+    console.log(props);
+    return(
     <div>
         <h3>Expense DashBoard</h3>
         <ConnectedExpenseSummary />
         <ConnectedExpenseListFilter />
         <ConnectedExpenseList />
     </div>
-);
+    );
+};

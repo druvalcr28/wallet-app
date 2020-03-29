@@ -1,24 +1,28 @@
 import React from 'react';
 // We use 'Link' or 'NavLink' instead of 'a' tag because, 'Link' provide us client side routing
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import { ConnectedLoginPage } from '../components/LoginPage';
 import { ExpenseDashboardPage } from '../components/ExpenseDashboardPage';
 import { ConnectedAddExpensePage } from '../components/AddExpensePage';
 import { ConnectedEditExpensePage } from '../components/EditExpensePage';
 import { NotFoundPage } from '../components/NotFoundPage';
-import { Header } from '../components/Header';
+import { createBrowserHistory } from 'history';
+import PrivateRoute from './PrivateRoute';
+
+export const history = createBrowserHistory();
  
 const AppRouter = () => (
-    <BrowserRouter>
-        <div>    
-            <Header />
+    <Router history={history}>
+        <div>
             <Switch>
-                <Route path="/" component={ExpenseDashboardPage} exact={true}/>
-                <Route path="/create" component={ConnectedAddExpensePage} />
-                <Route path="/edit/:id" component={ConnectedEditExpensePage} />
+                <Route path="/" component={ConnectedLoginPage} exact={true}/>
+                <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
+                <PrivateRoute path="/create" component={ConnectedAddExpensePage} />
+                <PrivateRoute path="/edit/:id" component={ConnectedEditExpensePage} />
                 <Route component={NotFoundPage} />
             </Switch>
         </div>
-    </BrowserRouter>
+    </Router>
 );
 
 export default AppRouter;
