@@ -10,6 +10,11 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import moment from 'moment';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+
 // Individual Expense
 // if we use a const ExpenseListItem instead of class, we can't make use of any states, depending on the needs we can use both
 class ExpenseListItem extends React.Component{
@@ -51,29 +56,48 @@ class ExpenseListFilter extends React.Component {
     }
     render(){
     return (
-    <div>
-        <input type="text" value={this.props.filters.text} onChange={(e) => {
-            this.props.dispatch(setTextFilter({text:e.target.value}));
-        }}/>
-        <select value={this.props.filters.sortBy} onChange={(e) => {
-            if(e.target.value === 'amount') this.props.dispatch(sortByAmount());
-            else this.props.dispatch(sortByDate());
-        }}>
-            <option value='amount'>Amount</option>
-            <option value='date'>Date</option>
-        </select>
-        <DateRangePicker
-            startDate={this.props.filters.startDate} // momentPropTypes.momentObj or null,
-            startDateId="start_date_id" // PropTypes.string.isRequired,
-            endDate={this.props.filters.endDate} // momentPropTypes.momentObj or null,
-            endDateId="end_date_id" // PropTypes.string.isRequired,
-            onDatesChange={this.onDatesChange} // PropTypes.func.isRequired,
-            focusedInput={this.state.calenderFocused} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-            onFocusChange={this.onFocusChange} // PropTypes.func.isRequired,
-            showClearDates={true}
-            numberOfMonths={1}
-            isOutsideRange={(day) => { return false }}
-        />
+    <div className="filter-box">
+        <Container>
+        <Row>
+            <Col>
+                <input type="text" className="filter-box__search" value={this.props.filters.text} onChange={(e) => {
+                    this.props.dispatch(setTextFilter({text:e.target.value}));
+                }} placeholder="Search Expenses"/>
+            </Col>
+            <Col>
+                <Row>
+                    <Col xs={2}>
+                        <h4 className="filter-box__drop-header">Sort</h4>
+                    </Col>
+                    <Col>
+                        <select className="filter-box__drop" value={this.props.filters.sortBy} onChange={(e) => {
+                            if(e.target.value === 'amount') this.props.dispatch(sortByAmount());
+                            else this.props.dispatch(sortByDate());
+                        }}>
+                            <option value='amount'>Amount</option>
+                            <option value='date'>Date</option>
+                        </select>
+                    </Col>
+                </Row>
+            </Col>
+            <Col>
+                <div className="filter-box__date">
+                <DateRangePicker
+                    startDate={this.props.filters.startDate} // momentPropTypes.momentObj or null,
+                    startDateId="start_date_id" // PropTypes.string.isRequired,
+                    endDate={this.props.filters.endDate} // momentPropTypes.momentObj or null,
+                    endDateId="end_date_id" // PropTypes.string.isRequired,
+                    onDatesChange={this.onDatesChange} // PropTypes.func.isRequired,
+                    focusedInput={this.state.calenderFocused} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                    onFocusChange={this.onFocusChange} // PropTypes.func.isRequired,
+                    showClearDates={true}
+                    numberOfMonths={1}
+                    isOutsideRange={(day) => { return false }}
+                />
+                </div>
+            </Col>
+        </Row>
+        </Container>
     </div>
     );
     }
@@ -114,9 +138,20 @@ const ConnectedExpenseList = connect(mapStatetoProps_EL)(ExpenseList);
 // Expense Summary
 const ExpenseSummary = (props) => {
     return(
-        <div>
-            <h3>Total Expense(s) : {props.totExpense}</h3>
-            <h3>Total Amount : {props.totAmount}</h3>
+        <div className="summary-box">
+            <Container>
+            <Row>
+                <Col>
+                    <h3 className="summary-box__content">Total Expense(s) : <span>{props.totExpense}</span></h3>
+                </Col>
+                <Col>    
+                    <h3 className="summary-box__content">Total Amount : <span>{props.totAmount}</span></h3>
+                </Col>
+                <Col>
+                    <Link to="/create" style={{ textDecoration:'none' }}><Button className="box-layout__button" variant="flat">Add Expense</Button></Link>
+                </Col>
+            </Row>
+            </Container>
         </div>
     );
 };
@@ -134,10 +169,13 @@ const ConnectedExpenseSummary = connect(mapStatetoProps_ES)(ExpenseSummary);
 export const ExpenseDashboardPage = (props) => {
     return(
     <div>
-        <h3>Expense DashBoard</h3>
-        <ConnectedExpenseSummary />
-        <ConnectedExpenseListFilter />
-        <ConnectedExpenseList />
+        <div className="dashboard__header">
+            <ConnectedExpenseSummary />
+            <ConnectedExpenseListFilter />
+        </div>
+        <div>
+            <ConnectedExpenseList />
+        </div>
     </div>
     );
 };

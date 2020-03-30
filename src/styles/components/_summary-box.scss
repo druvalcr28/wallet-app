@@ -1,0 +1,10 @@
+.summary-box{
+    margin-bottom: 30px;
+}
+.summary-box__content{
+    font-family: $basic_font;
+    color: $purple_color;
+    span{
+        color: $dark_purple_color;
+    }
+}

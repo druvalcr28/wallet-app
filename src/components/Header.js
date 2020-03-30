@@ -10,7 +10,6 @@ import Button from 'react-bootstrap/Button';
 
 export const Header = (props) => (
     <div className="header">
-        <div className="content-container">
         <Container>
             <Row>
                 <Col xs={2}>
@@ -22,7 +21,6 @@ export const Header = (props) => (
                 </Col>
             </Row>
         </Container>
-        </div>
     </div>
 );
 export const ConnectedHeader = connect()(Header);
