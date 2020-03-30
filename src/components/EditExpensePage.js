@@ -11,7 +11,8 @@ const EditExpensePage = (props) => {
             expense={props.expense}
             handleSubmit={(expense) => {
                 props.dispatch(startEditExpense({id:props.expense.id,updates:expense}));
-                props.history.push('/dashboard');
+                //props.history.push('/dashboard');
+                setTimeout(function(){ props.history.push('/dashboard'); }, 1000);
             }}/>
         </div>
     );

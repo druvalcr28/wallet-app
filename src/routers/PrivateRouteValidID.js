@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route,Redirect } from 'react-router-dom';
+import { ConnectedHeader } from '../components/Header';
 
 const PrivateRouteValidID = ({isValidID, isAuthenticated, component:Component, ...rest}) => {
     return (
         <Route {...rest} component={(props) => {
             if(isAuthenticated && isValidID){
-                return (<Component {...props}/>);
+                return (
+                    <div>
+                        <ConnectedHeader />
+                        <Component {...props}/>
+                    </div>
+                );
             }
             else if(isAuthenticated && !isValidID){
                 return (<Redirect to="/dashboard" />);
