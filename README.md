@@ -85,14 +85,6 @@ install redex thunk : npm install redux-thunk@2.3.0
 
 npm intall history
 
-IMP:
-- store.dispatch({});
-- store.subscribe({});
-
-IMP*:
-- react component as class : use 'this.props' to access props 
-- react component as const : use 'props' to access props 
-
 #### Issue Solution
 1. issue : Development server of create-react-app does not auto refresh 
 - solution :
