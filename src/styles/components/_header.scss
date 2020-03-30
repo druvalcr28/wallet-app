@@ -1,0 +1,21 @@
+.header{
+    background: white;
+    border-bottom: 2px solid $purple_color;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+}
+.header__title{
+    color: $purple_color;
+    h1{
+        font-family: $basic_font;
+    }
+}
+.header__title:hover{
+    color: $dark_purple_color;
+}
+.header__link{
+    float: right;
+}
+.header__button{
+    float: right;
+    margin-top: 5px;
+}

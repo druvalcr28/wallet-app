@@ -1,0 +1,24 @@
+
+.box-layout{
+    border-color: $purple_color;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+.box-layout__card{
+    border-color: $purple_color;
+}
+.box-layout__title{
+    color: $purple_color;
+    text-align: center;
+}
+.box-layout__subtitle{
+    color: $dark_purple_color;
+    text-align: center;
+}
+.box-layout__button{
+    background-color: $purple_color;
+    color: white;
+}
