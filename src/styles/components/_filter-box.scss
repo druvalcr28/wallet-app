@@ -1,22 +1,52 @@
 .filter-box{
     margin-bottom: 20px;
 }
-
 .filter-box__search{
+    width: 100%;
     padding: 10px 10px;
     border-radius: 4px;
     border-color: $purple_color;
+}
+
+.filter-box__drop-headerCol{
+    padding: 0px 0px;
+    margin-top: 10px;
 }
 .filter-box__drop-header{
     font-family: $basic_font;
     color: $purple_color;
     float: right;
-    padding-top: 10px;
+}
+.filter-box__dropCol{
+    margin-top: 5px;
 }
 .filter-box__drop{
-    padding: 0px 10px 0px 10px;
     border: 2px solid $purple_color;
     background: white;
-    height: 47px;
     border-radius: 4px;
+    height: 40px;
+    width: 100%;
+}
+.filter-box__date{
+    padding-left: 50px;
+}
+
+// Phone
+@media screen and (max-width: 600px) {
+    .filter-box__drop-headerCol{
+        margin-top: 15px;
+    }
+    .filter-box__drop-header{
+        font-size: large;
+    }
+    .filter-box__sort{
+        margin-top: 10px;
+    }
+    .filter-box__drop{
+        width: 80%;
+    }
+    .filter-box__date{
+        margin-top: 13px;
+        padding-left: 0px;
+    }
 }

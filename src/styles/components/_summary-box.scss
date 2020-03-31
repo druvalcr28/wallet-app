@@ -4,7 +4,18 @@
 .summary-box__content{
     font-family: $basic_font;
     color: $purple_color;
+    font-size: 25px;
     span{
         color: $dark_purple_color;
+    }
+}
+
+// Phone
+@media screen and (max-width: 600px) {
+    div.summary-box__content{
+        font-size: 17px;
+    }
+    div.summary-box__button{
+        font-size: 15px;
     }
 }

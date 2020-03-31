@@ -59,17 +59,17 @@ class ExpenseListFilter extends React.Component {
     <div className="filter-box">
         <Container>
         <Row>
-            <Col>
+            <Col xs={12} md={3} className="filter-box__searchCol">
                 <input type="text" className="filter-box__search" value={this.props.filters.text} onChange={(e) => {
                     this.props.dispatch(setTextFilter({text:e.target.value}));
                 }} placeholder="Search Expenses"/>
             </Col>
-            <Col>
+            <Col xs={12} md={3} className="filter-box__sort">
                 <Row>
-                    <Col xs={2}>
-                        <h4 className="filter-box__drop-header">Sort</h4>
+                    <Col xs={4} className="filter-box__drop-headerCol">
+                        <h4 className="filter-box__drop-header">Sort By </h4>
                     </Col>
-                    <Col>
+                    <Col xs={8} className="filter-box__dropCol">
                         <select className="filter-box__drop" value={this.props.filters.sortBy} onChange={(e) => {
                             if(e.target.value === 'amount') this.props.dispatch(sortByAmount());
                             else this.props.dispatch(sortByDate());
@@ -80,9 +80,9 @@ class ExpenseListFilter extends React.Component {
                     </Col>
                 </Row>
             </Col>
-            <Col>
+            <Col xs={12} md={6}>
                 <div className="filter-box__date">
-                <DateRangePicker
+                <DateRangePicker 
                     startDate={this.props.filters.startDate} // momentPropTypes.momentObj or null,
                     startDateId="start_date_id" // PropTypes.string.isRequired,
                     endDate={this.props.filters.endDate} // momentPropTypes.momentObj or null,
@@ -142,13 +142,13 @@ const ExpenseSummary = (props) => {
             <Container>
             <Row>
                 <Col>
-                    <h3 className="summary-box__content">Total Expense(s) : <span>{props.totExpense}</span></h3>
+                    <div className="summary-box__content">Total Expense(s) : <span>{props.totExpense}</span></div>
                 </Col>
                 <Col>    
-                    <h3 className="summary-box__content">Total Amount : <span>{props.totAmount}</span></h3>
+                    <div className="summary-box__content">Total Amount : <span>{props.totAmount}</span></div>
                 </Col>
                 <Col>
-                    <Link to="/create" style={{ textDecoration:'none' }}><Button className="box-layout__button" variant="flat">Add Expense</Button></Link>
+                    <Link to="/create" style={{ textDecoration:'none' }}><Button className="box-layout__button" variant="flat"><div className="summary-box__button">Add Expense</div></Button></Link>
                 </Col>
             </Row>
             </Container>
