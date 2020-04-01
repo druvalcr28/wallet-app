@@ -3,6 +3,7 @@ import 'react-dates/initialize';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import Button from 'react-bootstrap/Button';
 
 // we are using state because we can impliment live error checkings
 // amount is given as a 'text' not 'number' because, we want to restrict to 2 decimal places.
@@ -63,22 +64,12 @@ export class ExpenseForm extends React.Component {
     };
     render(){
         return (
-            <div>
-            {this.state.errorMsg && <p>{this.state.errorMsg}</p>} 
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Description -
-                    <input type="text" value={this.state.description} placeholder='Description' onChange={this.onDescriptionChange} autoFocus/>
-                </label>
-                <br></br>
-                <label>
-                    Amount -
-                    <input type="text" value={this.state.amount} placeholder='Amount' onChange={this.onAmountChange}/>
-                </label>
-                <br></br>
-                <label>
-                    Date -
-                    <SingleDatePicker
+            <form className="expenseform" onSubmit={this.handleSubmit}>
+                {this.state.errorMsg && <p className="form__error">* {this.state.errorMsg}</p>} 
+                <input className="form__text" type="text" value={this.state.description} placeholder='Description' onChange={this.onDescriptionChange} autoFocus/>
+                <input className="form__text" type="text" value={this.state.amount} placeholder='Amount' onChange={this.onAmountChange}/>
+                <div className="form__date">
+                <SingleDatePicker
                     date={this.state.createdAt} // momentPropTypes.momentObj or null
                     onDateChange={createdAt => this.setState({ createdAt })} // PropTypes.func.isRequired
                     focused={this.state.calenderFocused} // PropTypes.bool
@@ -86,17 +77,11 @@ export class ExpenseForm extends React.Component {
                     id="dateID" // PropTypes.string.isRequired,
                     numberOfMonths={1}
                     isOutsideRange={(day) => { return false }}
-                    />
-                </label>
-                <br></br>
-                <label>
-                    Notes -
-                    <textarea type="text" value={this.state.note} placeholder='Notes' onChange={this.onNotesChange}/>
-                </label>
-                <br></br>
-                <button>Add Expense</button>
+                />
+                </div>
+                <textarea className="form__textarea" type="text" value={this.state.note} placeholder='Notes (Optional)' onChange={this.onNotesChange}/>
+                <Button className="box-layout__button form__button" type="submit" variant="flat">Save Expense</Button>
             </form>
-            </div>
         );
     }
 }

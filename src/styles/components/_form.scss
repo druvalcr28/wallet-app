@@ -1,0 +1,56 @@
+.expenseform{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 300px 0px 300px;
+}
+.form__text{
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border-color: $purple_color;
+    height: 50px;
+    padding-left: 10px;
+}
+.form__date{
+    margin-bottom: 10px;
+    align-self: center;
+}
+.form__textarea{
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border-color: $purple_color;
+    height: 100px;
+    padding-left: 10px;
+}
+.form__error{
+    color: red;
+    font-style: italic;
+}
+.form__button{
+    width: 20%;
+    align-self: center;
+}
+.expense-remove{
+    text-align: center;
+}
+.expense-remove__button{
+    border-color: red;
+    border-radius: 4px;
+    background: red;
+    color: rgb(255, 255, 255);
+    align-self: center;
+    width: 20%;
+}
+
+// Phone
+@media screen and (max-width: 600px){
+    .expenseform{
+        padding: 20px 50px 0px 50px;
+    }
+    .form__button{
+        width: 100%;
+        align-self: center;
+    }
+    .expense-remove__button{
+        width: 100%;
+    }
+}

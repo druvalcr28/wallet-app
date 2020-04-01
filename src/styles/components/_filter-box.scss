@@ -30,7 +30,6 @@
 .filter-box__date{
     padding-left: 50px;
 }
-
 // Phone
 @media screen and (max-width: 600px) {
     .filter-box__drop-headerCol{
@@ -47,6 +46,6 @@
     }
     .filter-box__date{
         margin-top: 13px;
-        padding-left: 0px;
+        padding-left: 10px;
     }
 }

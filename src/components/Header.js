@@ -12,11 +12,10 @@ export const Header = (props) => (
     <div className="header">
         <Container>
             <Row>
-                <Col xs={2}>
+                <Col xs={6} md={4}>
                     <Link to="/dashboard" className="header__title" style={{ textDecoration:'none' }}><h1>Wallet</h1></Link>
                 </Col>
-                <Col xs={4}></Col>
-                <Col xs={6}>
+                <Col xs={6} md={8}>
                     <Button className="box-layout__button header__button" onClick={() => {props.dispatch(startLogout());}} varient="flat">Logout</Button>
                 </Col>
             </Row>
