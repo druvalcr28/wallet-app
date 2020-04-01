@@ -1,0 +1,44 @@
+.list-wrapper{
+    margin: 20px 100px;
+    // Phone
+    @media screen and (max-width: 600px) {
+        margin: 20px 20px;
+    }
+}
+.list-item{
+    border: 0.2px solid $purple_color;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    color: $dark_purple_color;
+    transition: background 0.2s ease;
+    &:hover{
+        background: $light_purple_color;
+    }
+    
+    // Desktop
+    @media screen and (min-width: 600px) {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px;
+    }
+}
+.list-item__title{
+    margin: 0;
+    word-break: break-all;
+    margin-bottom: 15px;
+    // Phone
+    @media screen and (max-width: 600px) {
+        margin-bottom: 5px;
+        font-size: 20px;
+    }
+}
+.list-item__amount{
+    // Phone
+    @media screen and (max-width: 600px) {
+        font-size: 20px;
+        margin-top: 5px;
+    }
+}
+

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import reorderExpenses from '../selectors/expenses';
 import getTotAmount from '../selectors/getTotAmount';
 import { setTextFilter,sortByDate,sortByAmount,setStartDate,setEndDate } from '../actions/filters';
-import { startRemoveExpense } from '../actions/expenses';
 import { Link } from 'react-router-dom';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
@@ -22,15 +21,14 @@ class ExpenseListItem extends React.Component{
     //console.log('ExpenseListItem :',this.props.details);    
     const id = this.props.details.id;
     return (
-    <div>
-        <Link to={ `/edit/${id}` }>
-            <h3>{this.props.details.description}</h3>
+        <Link className="list-item" to={ `/edit/${id}` } style={{ textDecoration: 'none' }}>
+            <div>
+                <h3 className="list-item__title">{this.props.details.description}</h3>
+                <span className="list-item__subtitle">{moment(this.props.details.createdAt).format('MMMM Do YYYY')}</span>
+            </div>
+            
+            <h3 className="list-item__amount">₹ {this.props.details.amount}</h3>
         </Link>
-        <p>{this.props.details.amount} - {moment(this.props.details.createdAt).format('MMMM Do YYYY')}</p>
-        <button onClick={() => {
-            this.props.dispatch(startRemoveExpense({id:this.props.details.id}));
-        }}>Remove</button>
-    </div>
     );
     }
 };
@@ -116,13 +114,11 @@ class ExpenseList extends React.Component{
     var expenses = this.props.expenses;
     //console.log('ExpenseList : expenses : ',expenses);
     return(
-    <div>
-       <ul>
-            {expenses.map(expense => {
-                //console.log('expense : ',expense);
-                return <ConnectedExpenseListItem key={expense.id} details={expense}/>})
-            }
-       </ul>
+    <div className="list-wrapper">
+        {expenses.map(expense => {
+            //console.log('expense : ',expense);
+            return <ConnectedExpenseListItem key={expense.id} details={expense}/>})
+        }
     </div>
     );
     };

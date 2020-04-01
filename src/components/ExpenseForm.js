@@ -67,7 +67,7 @@ export class ExpenseForm extends React.Component {
             <form className="expenseform" onSubmit={this.handleSubmit}>
                 {this.state.errorMsg && <p className="form__error">* {this.state.errorMsg}</p>} 
                 <input className="form__text" type="text" value={this.state.description} placeholder='Description' onChange={this.onDescriptionChange} autoFocus/>
-                <input className="form__text" type="text" value={this.state.amount} placeholder='Amount' onChange={this.onAmountChange}/>
+                <input className="form__text" type="text" value={this.state.amount} placeholder='Amount (in Rupee ₹)' onChange={this.onAmountChange}/>
                 <div className="form__date">
                 <SingleDatePicker
                     date={this.state.createdAt} // momentPropTypes.momentObj or null
