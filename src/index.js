@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
 import { login,logout } from './actions/auth';
+import { LoadingPage } from './components/LoadingPage';
 
 import {firebase} from './firebase/firebase';
 
@@ -28,12 +29,11 @@ const renderApp = () => {
     }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
+ReactDOM.render(<LoadingPage />, document.getElementById('root'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if(user){
         store.dispatch(login({userID:user.uid}));
-        console.log('logged in');
         store.dispatch(startSetExpenses()).then(() => {
             renderApp();
             if(history.location.pathname === '/') {
@@ -43,7 +43,6 @@ firebase.auth().onAuthStateChanged((user) => {
     } 
     else{
         store.dispatch(logout());
-        console.log('logged out');
         renderApp();
         history.push('/');
     }
