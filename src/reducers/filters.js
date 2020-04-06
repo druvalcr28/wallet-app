@@ -2,7 +2,7 @@ import moment from 'moment';
 
 // Reducer for filters
     // sortBy 'amount' or 'date'
-export default (state={text:'',sortBy:'amount',startDate:moment().startOf('month'),endDate:moment().endOf('month')},action) => {
+export default (state={text:'',sortBy:'amount',startDate:moment().startOf('month'),endDate:moment().endOf('month'),category:'allCategory'},action) => {
     var resultFilter;
     switch(action.type){
         case 'SET_TEXT_FILTER':
@@ -24,6 +24,10 @@ export default (state={text:'',sortBy:'amount',startDate:moment().startOf('month
         case 'SET_END_DATE':
             resultFilter = Object.assign({}, state);
             resultFilter.endDate = action.endDate;
+            return resultFilter;
+        case 'SET_CATEGORY':
+            resultFilter = Object.assign({}, state);
+            resultFilter.category = action.category;
             return resultFilter;
         default:
             return state;

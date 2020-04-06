@@ -15,6 +15,7 @@ export class ExpenseForm extends React.Component {
             amount: props.expense? (props.expense.amount).toString():'',
             note: props.expense? props.expense.note:'',
             createdAt: props.expense? moment(props.expense.createdAt):moment(),
+            category: props.expense? props.expense.category:'others',
             calenderFocused: false,
             errorMsg: ''
         };
@@ -44,9 +45,9 @@ export class ExpenseForm extends React.Component {
     };
     handleSubmit = (e) => {
         e.preventDefault(); // To prevent the full page refresh
-        if(!this.state.description || !this.state.amount || !this.state.createdAt){
+        if(!this.state.description || !this.state.amount || !this.state.createdAt || !this.state.category){
             this.setState((state) => {
-                return {errorMsg: 'Please provide Description, Amount and Date'};
+                return {errorMsg: 'Please provide Description, Amount, Date and Category'};
             });
         }
         else{
@@ -57,9 +58,16 @@ export class ExpenseForm extends React.Component {
                 description: this.state.description,
                 amount: parseFloat(this.state.amount,10),
                 createdAt: this.state.createdAt.valueOf(),
-                note: this.state.note
+                note: this.state.note,
+                category: this.state.category
             });
         }
+    };
+    onCategoryChange = (e) => {
+        const category = e.target.value;
+        this.setState((state) => {
+            return {category: category};
+        });
     };
     render(){
         return (
@@ -67,6 +75,16 @@ export class ExpenseForm extends React.Component {
                 {this.state.errorMsg && <p className="form__error">* {this.state.errorMsg}</p>} 
                 <input className="form__text" type="text" value={this.state.description} placeholder='Description' onChange={this.onDescriptionChange} autoFocus/>
                 <input className="form__text" type="text" value={this.state.amount} placeholder='Amount (in Rupee ₹)' onChange={this.onAmountChange}/>
+                <select className="form__category" defaultValue={this.state.category} onChange={this.onCategoryChange}>
+                    <option value="foodAndDrinks">Food & Drinks</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="housing">Housing</option>
+                    <option value="transportation">Transportation</option>
+                    <option value="lifeAndEntertainment">Life & Entertainment</option>
+                    <option value="communication">Communication</option>
+                    <option value="financialExpense">Financial Expense</option>
+                    <option value="others">Others</option>
+                </select>
                 <div className="form__date">
                 <SingleDatePicker
                     date={this.state.createdAt} // momentPropTypes.momentObj or null

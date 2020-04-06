@@ -43,6 +43,8 @@ export default (state=[],action) => {
                 result[indx].amount = action.updates.amount;
             if(action.updates.hasOwnProperty('createdAt'))
                 result[indx].createdAt = action.updates.createdAt;
+            if(action.updates.hasOwnProperty('category'))
+                result[indx].category = action.updates.category;
             return result;
         case 'SET_EXPENSES':
             return action.expenses;

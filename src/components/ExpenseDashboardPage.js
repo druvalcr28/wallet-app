@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import reorderExpenses from '../selectors/expenses';
 import getTotAmount from '../selectors/getTotAmount';
-import { setTextFilter,sortByDate,sortByAmount,setStartDate,setEndDate } from '../actions/filters';
+import { setTextFilter,sortByDate,sortByAmount,setStartDate,setEndDate,setCategory } from '../actions/filters';
 import { Link } from 'react-router-dom';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
@@ -93,6 +93,25 @@ class ExpenseListFilter extends React.Component {
                     isOutsideRange={(day) => { return false }}
                 />
                 </div>
+            </Col>
+        </Row>
+        <Row>
+            <Col xs={12} md={3}>
+            <div className="filter-box__category">
+            <select className="filter-box__category-drop" defaultValue={this.props.filters.category} onChange={(e) => {
+                    const category = e.target.value;
+                    this.props.dispatch(setCategory(category));
+            }}>
+                    <option value='allCategory'>All Category</option>
+                    <option value="foodAndDrinks">Food & Drinks</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="housing">Housing</option>
+                    <option value="transportation">Transportation</option>
+                    <option value="lifeAndEntertainment">Life & Entertainment</option>
+                    <option value="communication">Communication</option>
+                    <option value="financialExpense">Financial Expense</option>
+            </select>
+            </div>
             </Col>
         </Row>
         </Container>

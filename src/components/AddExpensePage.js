@@ -10,7 +10,8 @@ const AddExpensePage = (props) => (
                 description: expense.description,
                 note: expense.note,
                 amount: expense.amount,
-                createdAt: expense.createdAt
+                createdAt: expense.createdAt,
+                category: expense.category
             }));
             props.history.push('/dashboard');
         }}/>

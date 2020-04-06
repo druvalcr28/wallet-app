@@ -19,10 +19,10 @@ export const addExpense = (expense) => ({
     type: 'ADD_EXPENSE',
     expense: expense
 });
-export const startAddExpense = ({description='',note='',amount=0,createdAt=0}={}) => {
+export const startAddExpense = ({description='',note='',amount=0,createdAt=0,category='others'}={}) => {
     return (dispatch,getState) => {
         const uid = getState().auth.userID;
-        const expense = {description,note,amount,createdAt}
+        const expense = {description,note,amount,createdAt,category}
         return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => {
             dispatch(addExpense({
                 id: ref.key,
