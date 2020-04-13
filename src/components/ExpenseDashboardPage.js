@@ -14,6 +14,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
+import PieChart from './PieChart';
+
 // Individual Expense
 // if we use a const ExpenseListItem instead of class, we can't make use of any states, depending on the needs we can use both
 class ExpenseListItem extends React.Component{
@@ -80,7 +82,7 @@ class ExpenseListFilter extends React.Component {
             </Col>
             <Col xs={12} md={6}>
                 <div className="filter-box__date">
-                <DateRangePicker 
+                <DateRangePicker  
                     startDate={this.props.filters.startDate} // momentPropTypes.momentObj or null,
                     startDateId="start_date_id" // PropTypes.string.isRequired,
                     endDate={this.props.filters.endDate} // momentPropTypes.momentObj or null,
@@ -126,6 +128,14 @@ const mapStatetoProps_ELF = (state) => {
 }
 const ConnectedExpenseListFilter = connect(mapStatetoProps_ELF)(ExpenseListFilter);
 
+// Category PieChart
+const CategorySummary = (props) => {
+    return (
+        <div className="list-wrapper">
+            <PieChart />
+        </div>
+    );
+};
 
 // Expense Listing
 class ExpenseList extends React.Component{
@@ -189,6 +199,7 @@ export const ExpenseDashboardPage = (props) => {
             <ConnectedExpenseListFilter />
         </div>
         <div>
+            <CategorySummary />
             <ConnectedExpenseList />
         </div>
     </div>

@@ -25,6 +25,7 @@
     }
 }
 .list-item__title{
+    font-family: $basic_font;
     margin: 0;
     word-break: break-all;
     margin-bottom: 15px;
@@ -42,3 +43,8 @@
     }
 }
 
+.chart__header{
+    font-family: $basic_font;
+    color: $purple_color;
+    font-size: 25px;
+}
